@@ -1,0 +1,694 @@
+@import "/css/style.css";
+
+/* Ensure font families bind correctly */
+:root {
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+  --font-italiana: 'Italiana', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  /* Global Luxury Color Palette (Replaces faded beige with rich contrast) */
+  --accent-color: #5a1827 !important;
+  --accent-deep: #3d0f19 !important;
+  --accent-soft: #fae4ea !important;
+  --accent-ink: #ffffff !important;
+
+  --c-maroon: #5a1827;
+  --c-maroon-dark: #3a0d18;
+  --c-maroon-light: #7e2439;
+  --c-rose-gold: #c97d8c;
+  --c-blush-soft: #fdf5f6;
+  --c-blush-border: #f4d0d9;
+  --c-pink-badge-bg: #fae4ea;
+  --c-pink-badge-text: #78172d;
+
+  --c-forest: #1b4332;
+  --c-forest-dark: #112d22;
+  --c-forest-light: #2d6a4f;
+  --c-sage-gold: #7ca891;
+  --c-mint-soft: #edf5f0;
+  --c-mint-border: #d0e2d7;
+  --c-green-badge-bg: #e2ede6;
+  --c-green-badge-text: #133b26;
+
+  --c-gold: #b38b4d;
+  --c-gold-light: #dfba7e;
+}
+
+/* Academy division specific theme variables */
+.site-shell[data-division="academy"] {
+  --accent-color: #1b4332 !important;
+  --accent-deep: #112d22 !important;
+  --accent-soft: #e2ede6 !important;
+  --accent-ink: #ffffff !important;
+}
+
+body {
+  font-family: var(--sans);
+  background-color: #f7f4ef;
+  color: #2b2622;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   1. ANNOUNCEMENT BAR (Darker, High-Contrast Luxury Look - User Feedback)
+   ========================================================================== */
+.announcement-bar {
+  background: linear-gradient(90deg, #2b141d 0%, #3a1a27 50%, #2b141d 100%) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18) !important;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.announcement-bar.announcement-bar--treatments {
+  background: linear-gradient(90deg, #360f19 0%, #4a1523 50%, #360f19 100%) !important;
+  border-bottom: 1px solid rgba(244, 208, 217, 0.25) !important;
+}
+
+.announcement-bar.announcement-bar--academy {
+  background: linear-gradient(90deg, #12291d 0%, #1a3d2b 50%, #12291d 100%) !important;
+  border-bottom: 1px solid rgba(208, 226, 215, 0.25) !important;
+}
+
+.announcement-bar p {
+  color: #ffffff !important;
+}
+
+.announcement-bar__tag {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+  padding: 3px 10px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  opacity: 1 !important;
+}
+
+.announcement-bar__link {
+  color: #ffdce5 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  transition: all 0.2s ease !important;
+}
+.announcement-bar.announcement-bar--academy .announcement-bar__link {
+  color: #c4ebd4 !important;
+}
+.announcement-bar__link:hover {
+  color: #ffffff !important;
+  transform: translateX(3px);
+}
+
+.announcement-bar__close {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.announcement-bar__close:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  border-color: #ffffff !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+/* ==========================================================================
+   2. HEADER & DIVISION SWITCH (High-Contrast Buttons)
+   ========================================================================== */
+.division-switch {
+  background: #ebe4dc !important;
+  border: 1.5px solid #d8ccc0 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.division-switch a {
+  color: #4a3e36 !important;
+  font-weight: 600 !important;
+  transition: all 0.25s ease !important;
+}
+.division-switch a.is-active {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+.site-shell--treatments .division-switch a.is-active {
+  background: var(--c-maroon) !important;
+  box-shadow: 0 4px 14px rgba(90, 24, 39, 0.3) !important;
+}
+.site-shell--academy .division-switch a.is-active {
+  background: var(--c-forest) !important;
+  box-shadow: 0 4px 14px rgba(27, 67, 50, 0.3) !important;
+}
+
+/* Header Primary CTA */
+.site-shell--treatments .site-header__cta {
+  background: var(--c-maroon) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(90, 24, 39, 0.25) !important;
+}
+.site-shell--treatments .site-header__cta:hover {
+  background: var(--c-maroon-dark) !important;
+}
+.site-shell--academy .site-header__cta {
+  background: var(--c-forest) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(27, 67, 50, 0.25) !important;
+}
+.site-shell--academy .site-header__cta:hover {
+  background: var(--c-forest-dark) !important;
+}
+
+/* Active Nav Links */
+.site-shell--treatments .site-header__nav a.is-active {
+  color: var(--c-maroon) !important;
+  border-color: var(--c-maroon) !important;
+}
+.site-shell--academy .site-header__nav a.is-active {
+  color: var(--c-forest) !important;
+  border-color: var(--c-forest) !important;
+}
+
+/* ==========================================================================
+   3. DYNAMIC FOOTER THEMES (Maroon for Treatments, Forest Green for Academy)
+   ========================================================================== */
+.site-footer {
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* Treatments Footer (Rich Luxury Burgundy / Maroon) */
+.site-footer.site-footer--treatments {
+  background: linear-gradient(180deg, #360f19 0%, #22080f 100%) !important;
+  border-top: 1px solid rgba(199, 110, 130, 0.25);
+  color: #f7e9ec;
+}
+.site-footer.site-footer--treatments .site-footer__brand p,
+.site-footer.site-footer--treatments .site-footer__column a,
+.site-footer.site-footer--treatments .site-footer__hours p,
+.site-footer.site-footer--treatments .site-footer__bottom {
+  color: #ecd5db;
+}
+.site-footer.site-footer--treatments .site-footer__socials a {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 208, 217, 0.2);
+  color: #fff;
+}
+.site-footer.site-footer--treatments .site-footer__socials a:hover {
+  background: var(--c-rose-gold);
+  color: #fff;
+}
+.site-footer.site-footer--treatments .site-footer__division-note {
+  color: #e597a7;
+  font-weight: 600;
+}
+
+/* Academy Footer (Rich Luxury Emerald Forest Green) */
+.site-footer.site-footer--academy {
+  background: linear-gradient(180deg, #142e20 0%, #0a1b13 100%) !important;
+  border-top: 1px solid rgba(124, 168, 145, 0.25);
+  color: #eaf3ee;
+}
+.site-footer.site-footer--academy .site-footer__brand p,
+.site-footer.site-footer--academy .site-footer__column a,
+.site-footer.site-footer--academy .site-footer__hours p,
+.site-footer.site-footer--academy .site-footer__bottom {
+  color: #cfe1d7;
+}
+.site-footer.site-footer--academy .site-footer__socials a {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(208, 226, 215, 0.2);
+  color: #fff;
+}
+.site-footer.site-footer--academy .site-footer__socials a:hover {
+  background: var(--c-sage-gold);
+  color: #fff;
+}
+.site-footer.site-footer--academy .site-footer__division-note {
+  color: #8cc4a4;
+  font-weight: 600;
+}
+
+/* Home / Shared Footer (Deep Charcoal Plum) */
+.site-footer.site-footer--home {
+  background: linear-gradient(180deg, #241d21 0%, #151113 100%) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   4. TWO-TONE ALTERNATING SECTIONS (Tie-and-Dye Contrast)
+   ========================================================================== */
+/* Rose/Blush tone for Treatments */
+.section-tone--rose,
+.treatments-section {
+  background: linear-gradient(180deg, #fdf8f7 0%, #f7ece9 100%) !important;
+  border-top: 1px solid #f0dad6;
+  border-bottom: 1px solid #f0dad6;
+  position: relative;
+}
+
+/* Sage/Mint tone for Academy */
+.section-tone--sage,
+.academy-teaser {
+  background: linear-gradient(180deg, #f8fbf9 0%, #ecf4ef 100%) !important;
+  border-top: 1px solid #dbe7df;
+  border-bottom: 1px solid #dbe7df;
+  position: relative;
+}
+
+/* Trust Strip High-Contrast Luxury Dark Bar */
+.trust-strip {
+  background: linear-gradient(135deg, #2a1b21 0%, #1c1317 100%) !important;
+  border-top: 1px solid rgba(244, 208, 217, 0.15);
+  border-bottom: 1px solid rgba(244, 208, 217, 0.15);
+  color: #fbf4f5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.trust-strip .trust-item {
+  color: #fbf4f5 !important;
+}
+.trust-strip .trust-item__number {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.trust-strip .trust-item__label {
+  color: #dfcbd1 !important;
+}
+.trust-strip .trust-item__icon {
+  color: #e597a7 !important;
+}
+
+/* Home Offer Highlight */
+.home-offer {
+  background: linear-gradient(135deg, #fbf2f4 0%, #f6e2e7 50%, #f4dbe2 100%) !important;
+  border-top: 1px solid #ecc9d4;
+  border-bottom: 1px solid #ecc9d4;
+}
+
+/* ==========================================================================
+   5. LUXURY HIGH-CONTRAST PRICING PAGE & TABLES (Pink Badges & Bold Contrast)
+   ========================================================================== */
+.pricing-intro-banner {
+  background: linear-gradient(135deg, #fdf0f4 0%, #fbe4ec 100%);
+  border: 1.5px solid #f2c6d4;
+  border-radius: 14px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 18px rgba(120, 23, 45, 0.06);
+  margin-bottom: 32px;
+}
+.pricing-intro-banner__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--c-maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(120, 23, 45, 0.12);
+  flex-shrink: 0;
+}
+.pricing-intro-banner__text {
+  font-size: 0.975rem;
+  line-height: 1.5;
+  color: #4f1724;
+}
+.pricing-intro-banner__text strong {
+  color: var(--c-maroon-dark);
+}
+
+/* Price Tabs high-contrast buttons */
+.price-tabs button {
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.price-tabs button.is-active {
+  background: var(--c-maroon) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(90, 24, 39, 0.3) !important;
+}
+.price-tabs.pricing-division-tabs button#pricing-tab-academy.is-active {
+  background: var(--c-forest) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(27, 67, 50, 0.3) !important;
+}
+
+/* Luxury Card for Pricing Groups */
+.tattoo-prices__group {
+  background: #ffffff;
+  border: 1px solid #ecdcd6;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 30px -10px rgba(77, 22, 36, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tattoo-prices__group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px -10px rgba(77, 22, 36, 0.12);
+}
+.tattoo-prices__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3e9e4;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+.tattoo-prices__heading h3 {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  color: var(--c-maroon-dark);
+  margin: 0;
+}
+.pink-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--c-pink-badge-bg);
+  color: var(--c-pink-badge-text);
+  border: 1px solid var(--c-blush-border);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.green-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--c-green-badge-bg);
+  color: var(--c-green-badge-text);
+  border: 1px solid var(--c-mint-border);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* High-Contrast Price Table */
+.price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+}
+.price-table thead tr th {
+  background: #fbf7f5;
+  color: #634f4b;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-bottom: 1.5px solid #ebd9d2;
+}
+.price-table tbody tr {
+  background: #ffffff;
+  transition: background-color 0.2s ease;
+}
+.price-table tbody tr:hover {
+  background: #fcf4f6 !important;
+}
+.price-table tbody tr:nth-child(even) {
+  background: #fdfaf9;
+}
+.price-table tbody tr th {
+  padding: 14px;
+  font-size: 1rem;
+  color: #2b1f23;
+  font-weight: 600;
+  text-align: left;
+  border-top: 1px solid #f4eae6;
+  border-bottom: 1px solid #f4eae6;
+}
+.price-table tbody tr th small {
+  display: block;
+  font-size: 0.825rem;
+  color: #8c7377;
+  font-weight: 400;
+  margin-top: 3px;
+}
+.price-table tbody tr td {
+  padding: 14px;
+  font-size: 0.95rem;
+  color: #4b3d3f;
+  vertical-align: middle;
+  border-top: 1px solid #f4eae6;
+  border-bottom: 1px solid #f4eae6;
+}
+
+/* Vivid Price Badge Pill */
+.price-highlight-pill {
+  display: inline-block;
+  background: #fbe6eb;
+  color: #7b172e;
+  border: 1px solid #f3c2cd;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(123, 23, 46, 0.08);
+  white-space: nowrap;
+}
+.duration-pill {
+  display: inline-block;
+  background: #f0ece8;
+  color: #554844;
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.price-row-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--c-maroon);
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.price-row-action:hover {
+  background: #fae4ea;
+  border-color: #f4c2ce;
+  color: #610e20;
+}
+
+/* Plasma Offer Card Enhancements */
+.plasma-offer-card {
+  background: #ffffff;
+  border: 1.5px solid #ebd4db;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(77, 22, 36, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.plasma-offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d66b88, #7a172e);
+}
+.plasma-offer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(77, 22, 36, 0.14);
+  border-color: #d66b88;
+}
+.plasma-offer-card__price s {
+  color: #9f8287;
+  font-size: 1.05rem;
+}
+.plasma-offer-card__price strong {
+  color: var(--c-maroon);
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   6. RICH ANIMATIONS & HOVER EFFECTS (Unique Keratin Inspiration)
+   ========================================================================== */
+.image-card,
+.course-card,
+.product-card,
+.value-card,
+.step-card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+.image-card:hover,
+.course-card:hover,
+.product-card:hover {
+  transform: translateY(-6px) scale(1.008) !important;
+  box-shadow: 0 20px 40px -15px rgba(43, 38, 34, 0.16) !important;
+}
+.image-card:hover .image-card__image img,
+.course-card:hover .course-card__image img {
+  transform: scale(1.04);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.image-card__image,
+.course-card__image {
+  overflow: hidden;
+}
+
+/* Button Shimmer */
+.action-link--primary,
+.button--dark {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.action-link--primary:hover,
+.button--dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(43, 38, 34, 0.2);
+}
+
+/* Floating WhatsApp / Phone Pulse Effect */
+.floating-contact__whatsapp,
+.floating-contact__phone {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.floating-contact__whatsapp:hover,
+.floating-contact__phone:hover {
+  transform: scale(1.1);
+}
+.floating-contact__whatsapp::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: pulse-ring 2.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  pointer-events: none;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ==========================================================================
+   7. ACADEMY VIDEO / REEL SHOWCASE
+   ========================================================================== */
+.academy-video-showcase {
+  background: linear-gradient(180deg, #f3f8f5 0%, #e8f2ec 100%);
+  border-top: 1px solid #d4e4db;
+  border-bottom: 1px solid #d4e4db;
+}
+.video-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+@media (max-width: 900px) {
+  .video-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.video-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #d5e4dc;
+  box-shadow: 0 8px 24px -6px rgba(27, 58, 43, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -8px rgba(27, 58, 43, 0.16);
+}
+.video-card__thumbnail {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+.video-card__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.video-card:hover .video-card__thumbnail img {
+  transform: scale(1.05);
+}
+.video-card__play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(27, 58, 43, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.video-card:hover .video-card__play-btn {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: var(--c-forest);
+}
+.video-card__duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.video-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--c-forest-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+.video-card__body {
+  padding: 18px 20px 22px;
+}
+.video-card__body h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--c-forest-dark);
+  margin-bottom: 6px;
+}
+.video-card__body p {
+  font-size: 0.875rem;
+  color: #586960;
+  line-height: 1.45;
+  margin: 0;
+}
