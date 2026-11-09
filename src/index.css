@@ -97,6 +97,11 @@
 }
 
 /* BASE STYLING & TYPOGRAPHY */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   font-family: var(--sans);
   background-color: var(--color-canvas-neutral);
@@ -106,6 +111,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -351,6 +357,36 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .site-header__cta {
+    display: none !important;
+  }
+  .site-header__main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 8px;
+  }
+  .division-switch {
+    padding: 2px;
+  }
+  .division-switch a {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .brand-lockup__name {
+    font-size: 1.2rem;
+  }
+  .brand-lockup__caption {
+    display: none;
+  }
+  .clinic-notice-compact {
+    font-size: 11px;
+    padding: 6px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
 }
 
 /* ==========================================================================
