@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   ArrowUpRight,
+  Check,
   GraduationCap,
   Leaf,
   Play,
+  Sparkles,
   Users,
   X
 } from 'lucide-react';
-import { assets, courses } from '../data/siteData';
-import { ActionLink, CourseCard, Reveal, SectionHeading } from '../components/Common';
+import { assets } from '../data/siteData';
+import { ActionLink, Reveal, SectionHeading } from '../components/Common';
+import { CourseFinder } from '../components/CourseFinder';
 
 export function AcademyHomePage() {
-  const featuredCourses = courses.filter((c) => !c.upcoming).slice(0, 3);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   const academyVideos = [
@@ -44,174 +46,195 @@ export function AcademyHomePage() {
   ];
 
   return (
-    <main className="page page--academy page-motion">
-      {/* Academy Hero */}
-      <section className="division-hero division-hero--academy">
-        <img
-          src={assets.academyHero}
-          alt="Organik Beauty Academy original website imagery"
-          fetchPriority="high"
-        />
-        <div className="division-hero__overlay"></div>
-        <div className="division-hero__content page-container">
-          <p className="eyebrow">Organik Beauty Academy</p>
-          <h1>
-            Learn with care.
-            <br />
-            <em>Grow with confidence.</em>
-          </h1>
-          <p>Career-focused beauty education with the space to practise, ask questions and find your own way forward.</p>
-          <div className="division-hero__actions">
-            <ActionLink href="/academy/courses" variant="light">
-              Explore courses
-            </ActionLink>
-            <ActionLink href="/contact?enquiry=academy" variant="outline">
-              Ask about enrolment
-            </ActionLink>
+    <main className="page page--academy page-motion" data-division="academy">
+      {/* 1. Substantial Eucalyptus Hero with Learning-in-Practice Photo */}
+      <section className="academy-eucalyptus-hero" aria-labelledby="academy-hero-title">
+        <div className="page-container">
+          <div className="academy-hero-grid">
+            <div>
+              <span
+                className="eyebrow"
+                style={{ color: 'var(--academy-brass)', display: 'block', marginBottom: '12px' }}
+              >
+                Organik Beauty Academy · Boutique Training
+              </span>
+              <h1 id="academy-hero-title">
+                Learn with care.
+                <br />
+                <em>Grow with confidence.</em>
+              </h1>
+              <p className="hero-lead">
+                Career-focused, mostly one-on-one beauty education with live models and dedicated mentorship from Racheal.
+                Gain the practical confidence to launch or elevate your beauty career.
+              </p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                {/* Primary Action in Dark Hero: Eucalyptus text on Parchment */}
+                <a
+                  href="#course-finder"
+                  className="btn-academy-hero-action"
+                  aria-label="Find a Course in Organik Beauty Academy"
+                >
+                  <span>Find a Course</span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </a>
+                <Link
+                  to="/contact?enquiry=academy"
+                  className="action-link action-link--outline"
+                  style={{ color: '#FAF7F2', borderColor: 'rgba(250, 247, 242, 0.4)' }}
+                >
+                  Ask about enrolment
+                </Link>
+              </div>
+            </div>
+
+            <div className="academy-hero-photo-wrap">
+              <img
+                src={assets.academyHero}
+                alt="Student receiving live supervised instruction at Organik Beauty Academy"
+                fetchPriority="high"
+              />
+            </div>
           </div>
         </div>
-        <span className="division-hero__caption">Mermaid Beach · Small, supportive classes</span>
       </section>
 
-      {/* Intro Band */}
-      <section className="academy-intro-band">
-        <div className="page-container academy-intro-band__inner">
-          <span className="academy-intro-band__icon">
-            <Leaf size={24} aria-hidden="true" />
-          </span>
-          <div>
-            <h2>Career-focused courses</h2>
-            <p>Helping students move into the beauty industry</p>
-          </div>
-          <Link to="/academy/course-information" className="text-link">
-            How learning works <ArrowRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
+      {/* 2. Course Finder Immediately Below Hero on Parchment */}
+      <CourseFinder showIntro={true} />
 
-      {/* Intro Copy & Photo */}
+      {/* Learning Experience & Mentorship Philosophy */}
       <section className="section-pad page-container academy-intro">
         <Reveal>
           <div className="academy-intro__copy">
-            <p className="eyebrow">
-              <span className="eyebrow__line"></span>A welcoming place to learn
+            <p className="eyebrow" style={{ color: 'var(--academy-brass)' }}>
+              <span className="eyebrow__line" style={{ background: 'var(--academy-brass)' }}></span>A Welcoming Place to Learn
             </p>
-            <h2>
-              Small classes. <em>Real guidance.</em>
+            <h2 style={{ color: 'var(--academy-eucalyptus)' }}>
+              Intimate classes. <em>Real guidance.</em>
             </h2>
-            <p>
-              Organik Beauty Academy is a personal training space led by Racheal. Learn in a small group, practise with
-              live models under supervision and build confidence at your own pace.
+            <p style={{ color: 'var(--academy-dark-text)', lineHeight: 1.65 }}>
+              Organik Beauty Academy is an intimate training space in Mermaid Beach led personally by Racheal.
+              We believe quality training cannot happen in crowded classrooms. That is why our courses are capped
+              to 1-on-1 or micro-groups, ensuring you spend maximum time on live models with your trainer beside you.
             </p>
-            <p>
-              Course details, kit options and entry requirements are discussed with you before enrolment, so you can
-              choose the pathway that feels right.
+            <p style={{ color: 'var(--academy-dark-text)', lineHeight: 1.65 }}>
+              From hygiene and skin anatomy to client consultation, pricing strategy, and ongoing post-graduation
+              WhatsApp support, you are supported every step of the journey.
             </p>
-            <ActionLink href="/academy/trainer" variant="text">
-              Meet your trainer
-            </ActionLink>
+            <div style={{ marginTop: '24px' }}>
+              <ActionLink href="/academy/trainer" variant="text">
+                Meet Racheal Morris (Trainer Bio) &rarr;
+              </ActionLink>
+            </div>
           </div>
         </Reveal>
 
         <Reveal delay={100}>
           <div className="academy-intro__image">
-            <img src={assets.academyEditorial} alt="Organik Beauty Academy learning space" loading="lazy" />
+            <img src={assets.academyEditorial} alt="Organik Beauty Academy practical training studio" loading="lazy" />
             <span className="academy-intro__image-note">
-              <Users size={16} aria-hidden="true" /> A personal learning experience
+              <Users size={16} aria-hidden="true" /> Live model supervised sessions
             </span>
           </div>
         </Reveal>
       </section>
 
-      {/* Courses Showcase */}
-      <section className="section-pad section-pad--soft">
+      {/* Academy Advantages Strip */}
+      <section className="section-pad section-pad--soft" style={{ background: 'var(--academy-parchment)', borderTop: '1px solid var(--color-border-subtle)', borderBottom: '1px solid var(--color-border-subtle)' }}>
         <div className="page-container">
           <Reveal>
             <SectionHeading
-              eyebrow="Choose your next chapter"
-              title="Courses with room to grow."
-              description="Browse the current course pathways and get in touch to talk through dates, pricing and what is included."
+              eyebrow="The Academy Difference"
+              title="Why study at Organik?"
+              description="Designed specifically to build genuine practical competence and industry readiness."
+              align="center"
             />
           </Reveal>
 
-          <div className="course-grid">
-            {featuredCourses.map((c, idx) => (
-              <Reveal key={c.slug} delay={idx * 75}>
-                <CourseCard course={c} index={idx} />
-              </Reveal>
-            ))}
-          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '28px', marginTop: '36px' }}>
+            <div style={{ background: '#FFFFFF', padding: '32px 28px', borderRadius: 'var(--radius-card)', border: '1px solid var(--color-border-subtle)' }}>
+              <div style={{ color: 'var(--academy-eucalyptus)', marginBottom: '16px' }}>
+                <Users size={28} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', color: 'var(--academy-eucalyptus)', marginBottom: '10px' }}>
+                1-on-1 &amp; Micro Classes
+              </h3>
+              <p style={{ color: 'var(--academy-dark-text)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
+                Every student receives full attention. No feeling rushed or overlooked. You learn at your own pace with continuous feedback.
+              </p>
+            </div>
 
-          <div className="section-link-row">
-            <ActionLink href="/academy/courses" variant="secondary">
-              Browse all courses
-            </ActionLink>
+            <div style={{ background: '#FFFFFF', padding: '32px 28px', borderRadius: 'var(--radius-card)', border: '1px solid var(--color-border-subtle)' }}>
+              <div style={{ color: 'var(--academy-eucalyptus)', marginBottom: '16px' }}>
+                <Sparkles size={28} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', color: 'var(--academy-eucalyptus)', marginBottom: '10px' }}>
+                Supervised Live Models
+              </h3>
+              <p style={{ color: 'var(--academy-dark-text)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
+                Transition seamlessly from theory and mannequin drills to live client models under direct supervision in a calm environment.
+              </p>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: '32px 28px', borderRadius: 'var(--radius-card)', border: '1px solid var(--color-border-subtle)' }}>
+              <div style={{ color: 'var(--academy-eucalyptus)', marginBottom: '16px' }}>
+                <GraduationCap size={28} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', color: 'var(--academy-eucalyptus)', marginBottom: '10px' }}>
+                Lifetime Mentorship
+              </h3>
+              <p style={{ color: 'var(--academy-dark-text)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
+                Learning doesn't end when class finishes. Access ongoing direct WhatsApp support with Racheal as you take your first paying clients.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 3 Steps */}
-      <section className="academy-steps section-pad page-container">
+      {/* Video Demonstrations */}
+      <section className="section-pad page-container">
         <Reveal>
           <SectionHeading
-            eyebrow="A clear path forward"
-            title="From curious to confident."
-            description="A simple, supportive process from your first question to your first day in class."
+            eyebrow="Hands-On Masterclasses"
+            title="Watch techniques in practice."
+            description="Take a preview look inside our curriculum, equipment and training techniques."
           />
         </Reveal>
 
-        <div className="steps-grid">
-          {[
-            { number: "01", title: "Choose a pathway", copy: "Explore the courses and decide what you would like to learn." },
-            { number: "02", title: "Talk it through", copy: "Ask about course details, dates, kit options and enrolment." },
-            { number: "03", title: "Learn by doing", copy: "Practise in a welcoming setting with personal trainer guidance." }
-          ].map((step, idx) => (
-            <Reveal key={step.number} delay={idx * 70}>
-              <article className="step-card">
-                <span>{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.copy}</p>
-              </article>
-            </Reveal>
+        <div className="video-masterclass-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginTop: '32px' }}>
+          {academyVideos.map((video) => (
+            <article
+              key={video.id}
+              className="video-card"
+              style={{ background: '#FFFFFF', borderRadius: 'var(--radius-card)', border: '1px solid var(--color-border-subtle)', overflow: 'hidden' }}
+            >
+              <div
+                className="video-card__thumbnail"
+                style={{ position: 'relative', height: '200px', cursor: 'pointer' }}
+                onClick={() => setSelectedVideo(video)}
+              >
+                <img src={video.thumbnail} alt={video.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(23, 63, 56, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#FAF7F2', color: 'var(--academy-eucalyptus)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Play size={20} fill="currentColor" />
+                  </span>
+                </div>
+                <span style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.7)', color: '#FFFFFF', padding: '2px 8px', borderRadius: '3px', fontSize: '0.75rem' }}>
+                  {video.duration}
+                </span>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <span className="eyebrow" style={{ color: 'var(--academy-brass)', fontSize: '0.75rem', marginBottom: '6px', display: 'block' }}>
+                  {video.badge}
+                </span>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.25rem', color: 'var(--academy-eucalyptus)', marginBottom: '8px' }}>
+                  {video.title}
+                </h3>
+                <p style={{ color: 'var(--academy-dark-text)', fontSize: '0.875rem', lineHeight: 1.55 }}>
+                  {video.description}
+                </p>
+              </div>
+            </article>
           ))}
-        </div>
-      </section>
-
-      {/* Video / Reel Showcase (Client Update) */}
-      <section className="academy-video-showcase section-pad">
-        <div className="page-container">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Watch &amp; learn"
-              title="Inside the Organik Academy."
-              description="Step into our training room. See live model demonstrations, lash mapping precision and the calm, supportive learning atmosphere."
-            />
-          </Reveal>
-
-          <div className="video-card-grid">
-            {academyVideos.map((video, idx) => (
-              <Reveal key={video.id} delay={idx * 80}>
-                <article className="video-card" onClick={() => setSelectedVideo(video)}>
-                  <div className="video-card__thumbnail">
-                    <img src={video.thumbnail} alt={video.title} loading="lazy" />
-                    <span className="video-card__badge">{video.badge}</span>
-                    <span className="video-card__duration">{video.duration}</span>
-                    <button
-                      type="button"
-                      className="video-card__play-btn"
-                      aria-label={`Play ${video.title}`}
-                    >
-                      <Play size={22} fill="currentColor" />
-                    </button>
-                  </div>
-                  <div className="video-card__body">
-                    <h3>{video.title}</h3>
-                    <p>{video.description}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -220,155 +243,60 @@ export function AcademyHomePage() {
         <div
           role="dialog"
           aria-modal="true"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
-            backgroundColor: 'rgba(10, 20, 15, 0.85)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px'
-          }}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(18, 51, 45, 0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}
           onClick={() => setSelectedVideo(null)}
+          onKeyDown={(e) => e.key === 'Escape' && setSelectedVideo(null)}
         >
           <div
-            style={{
-              backgroundColor: '#1b382b',
-              color: '#ffffff',
-              borderRadius: '20px',
-              maxWidth: '680px',
-              width: '100%',
-              overflow: 'hidden',
-              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.4)',
-              border: '1px solid rgba(255, 255, 255, 0.15)'
-            }}
+            style={{ background: '#FAF7F2', borderRadius: 'var(--radius-card)', maxWidth: '720px', width: '100%', padding: '28px', position: 'relative' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ position: 'relative', height: '340px' }}>
-              <img
-                src={selectedVideo.thumbnail}
-                alt={selectedVideo.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: '24px',
-                  textAlign: 'center'
-                }}
-              >
-                <div
-                  style={{
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '50%',
-                    background: '#ffffff',
-                    color: '#1b382b',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '16px'
-                  }}
-                >
-                  <Play size={28} fill="currentColor" />
-                </div>
-                <span className="green-badge-pill" style={{ background: 'rgba(255,255,255,0.9)', color: '#163b28' }}>
-                  {selectedVideo.badge} · {selectedVideo.duration}
-                </span>
-                <p style={{ marginTop: '12px', fontSize: '0.9rem', color: '#e0efe7' }}>
-                  Full high-definition video lesson preview available at Academy enrolment.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedVideo(null)}
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  background: 'rgba(0, 0, 0, 0.6)',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '50%',
-                  width: '36px',
-                  height: '36px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-              >
-                <X size={20} />
-              </button>
+            <button
+              type="button"
+              onClick={() => setSelectedVideo(null)}
+              style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--academy-eucalyptus)' }}
+              aria-label="Close video preview"
+            >
+              <X size={24} />
+            </button>
+            <span className="eyebrow" style={{ color: 'var(--academy-brass)' }}>
+              {selectedVideo.badge} · {selectedVideo.duration}
+            </span>
+            <h2 style={{ fontFamily: 'var(--serif)', color: 'var(--academy-eucalyptus)', fontSize: '1.8rem', marginTop: '6px', marginBottom: '14px' }}>
+              {selectedVideo.title}
+            </h2>
+            <div style={{ height: '340px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', marginBottom: '18px', background: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src={selectedVideo.thumbnail} alt={selectedVideo.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
             </div>
-            <div style={{ padding: '24px 28px' }}>
-              <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', margin: '0 0 8px' }}>
-                {selectedVideo.title}
-              </h3>
-              <p style={{ color: '#cfe1d7', fontSize: '0.925rem', lineHeight: 1.5, margin: '0 0 20px' }}>
-                {selectedVideo.description}
-              </p>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <ActionLink href="/contact?enquiry=academy" variant="primary">
-                  Ask about enrolment
-                </ActionLink>
-                <ActionLink href="/academy/courses" variant="outline">
-                  View all courses
-                </ActionLink>
-              </div>
-            </div>
+            <p style={{ color: 'var(--academy-dark-text)', lineHeight: 1.6 }}>
+              {selectedVideo.description} Full technique walk-throughs and hands-on practice are provided in our accredited courses.
+            </p>
           </div>
         </div>
       )}
 
-      {/* Quote Section */}
-      <section className="academy-quote">
-        <div className="page-container academy-quote__inner">
+      {/* Bottom CTA */}
+      <section className="soft-cta section-pad" style={{ backgroundColor: 'var(--academy-eucalyptus)', color: '#FAF7F2' }}>
+        <div className="page-container soft-cta__inner" style={{ textAlign: 'center' }}>
           <Reveal>
-            <span className="academy-quote__mark">“</span>
-            <p>My aim is to help every student feel supported, seen and ready for the next step in their beauty career.</p>
-            <span className="academy-quote__attribution">Racheal · Trainer, Organik Beauty Academy</span>
-            <a
-              href="https://www.youtube.com/results?search_query=The+Organik+Lounge+Podcast"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              Find The Organik Lounge Podcast <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+            <p className="eyebrow" style={{ color: 'var(--academy-brass)' }}>
+              Next Enrolment Intake
+            </p>
+            <h2 style={{ color: '#FAF7F2' }}>Ready to start your beauty journey?</h2>
+            <p style={{ color: 'var(--academy-sage)', maxWidth: '540px', margin: '0 auto 28px' }}>
+              Enquire today to discuss upcoming course dates, kit options, or flexible payment plans with Afterpay and Zip.
+            </p>
+            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/contact?enquiry=academy" className="btn-academy-hero-action">
+                <span>Enquire About a Course</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <Link to="/pricing?tab=academy" className="action-link action-link--outline" style={{ color: '#FAF7F2', borderColor: 'rgba(250, 247, 242, 0.4)' }}>
+                View Course Fees
+              </Link>
+            </div>
           </Reveal>
         </div>
-      </section>
-
-      {/* Academy CTA */}
-      <section className="academy-cta section-pad page-container">
-        <Reveal>
-          <div>
-            <p className="eyebrow">Your next chapter</p>
-            <h2>Let's talk about what you want to learn.</h2>
-            <p>Tell us about your goals and we'll help you explore the right course.</p>
-            <ActionLink href="/contact?enquiry=academy" variant="primary">
-              Enquire about a course
-            </ActionLink>
-          </div>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <div className="academy-cta__image">
-            <img src={assets.academyDetailOne} alt="Learning at Organik Beauty Academy" loading="lazy" />
-            <span>
-              <GraduationCap size={16} aria-hidden="true" /> Learn at Organik
-            </span>
-          </div>
-        </Reveal>
       </section>
     </main>
   );

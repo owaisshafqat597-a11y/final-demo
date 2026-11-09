@@ -10,9 +10,8 @@ import {
   Sparkles,
   Star
 } from 'lucide-react';
-import { assets, treatments } from '../data/siteData';
+import { assets, treatments, siteConfig } from '../data/siteData';
 import { ActionLink, ImageCard, Reveal, SectionHeading } from '../components/Common';
-import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ReviewCarousel, StarRating } from '../components/ReviewCarousel';
 
 export function HomePage() {
@@ -23,60 +22,138 @@ export function HomePage() {
     treatments.find((t) => t.slug === 'skin-needling')
   ].filter(Boolean);
 
+  const authenticGalleryHighlights = [
+    {
+      src: assets.clinicDetailOne,
+      alt: 'Lash extension artistry at Organik clinic',
+      caption: 'Lash Extensions · Mermaid Beach Clinic'
+    },
+    {
+      src: assets.academyDetailOne,
+      alt: 'Hands-on live model training at Organik Beauty Academy',
+      caption: 'Student Live Model Practice · Academy'
+    },
+    {
+      src: assets.clinicDetailTwo,
+      alt: 'Precision cosmetic tattooing result at Organik',
+      caption: 'Cosmetic Brow Tattooing · Clinic'
+    },
+    {
+      src: assets.academyDetailTwo,
+      alt: 'Brow mapping and caliper measurement training',
+      caption: 'Technique Masterclass · Academy'
+    }
+  ];
+
   return (
     <main className="page page--home page-motion">
-      {/* Split Hero */}
-      <section className="split-hero" aria-labelledby="home-title">
-        <Link className="split-hero__panel split-hero__panel--treatments" to="/treatments">
-          <img
-            src={assets.clinicHero}
-            alt="Organik Laser & Beauty clinic imagery"
-            fetchPriority="high"
-          />
-          <span className="split-hero__wash"></span>
-          <span className="split-hero__content">
-            <span className="split-hero__eyebrow">For your own kind of beautiful</span>
-            <span className="split-hero__title">
-              Thoughtful beauty, <em>made personal.</em>
-            </span>
-            <span className="split-hero__link">
-              Explore treatments <ArrowUpRight size={18} aria-hidden="true" />
-            </span>
-          </span>
-          <span className="split-hero__corner">Mermaid Beach · By appointment</span>
-        </Link>
+      {/* 2. Recomposed Homepage Hero: Two Equal Prominent Entrances */}
+      <section className="home-entrances-section" aria-label="Organik destinations">
+        <div className="page-container">
+          <div className="home-entrances-grid">
+            {/* Clinic Entrance */}
+            <article className="entrance-card entrance-card--clinic">
+              <div className="entrance-card__image-wrap">
+                <img
+                  src={assets.clinicHero}
+                  alt="Client receiving a relaxing skin treatment at Organik Laser & Beauty"
+                  fetchPriority="high"
+                />
+              </div>
+              <div className="entrance-card__solid-body">
+                <div>
+                  <span className="eyebrow" style={{ color: 'var(--treatments-burgundy)' }}>
+                    Clinic · Mermaid Beach
+                  </span>
+                  <h2>Beauty &amp; Skin Treatments</h2>
+                  <p>
+                    Thoughtful beauty and personalised skin care in our private Mermaid Beach clinic.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    to="/treatments"
+                    className="btn-treatments-primary"
+                    aria-label="Explore Treatments at Organik Laser & Beauty"
+                  >
+                    <span>Explore Treatments</span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </article>
 
-        <Link className="split-hero__panel split-hero__panel--academy" to="/academy">
-          <img
-            src={assets.academyHero}
-            alt="Organik Beauty Academy imagery"
-            fetchPriority="high"
-          />
-          <span className="split-hero__wash"></span>
-          <span className="split-hero__content">
-            <span className="split-hero__eyebrow">Skills for a beautiful career</span>
-            <span className="split-hero__title">
-              Learn with care. <em>Grow with confidence.</em>
-            </span>
-            <span className="split-hero__link">
-              Explore the academy <ArrowUpRight size={18} aria-hidden="true" />
-            </span>
-          </span>
-          <span className="split-hero__corner">One-on-one · Personal guidance</span>
-        </Link>
-
-        <div className="split-hero__center-lockup">
-          <span className="split-hero__center-mark">A considered beauty experience</span>
-          <h1 id="home-title">
-            A little more <em>you.</em>
-          </h1>
-          <span className="split-hero__center-rule"></span>
-          <p>One name. Two thoughtful journeys.</p>
+            {/* Academy Entrance */}
+            <article className="entrance-card entrance-card--academy">
+              <div className="entrance-card__image-wrap">
+                <img
+                  src={assets.academyHero}
+                  alt="Learner practising beauty technique with hands-on trainer guidance at Organik Beauty Academy"
+                  fetchPriority="high"
+                />
+              </div>
+              <div className="entrance-card__solid-body">
+                <div>
+                  <span className="eyebrow" style={{ color: 'var(--academy-eucalyptus)' }}>
+                    Academy · Career Training
+                  </span>
+                  <h2>Organik Beauty Academy</h2>
+                  <p>
+                    Hands-on, one-on-one beauty training and industry mentorship with real client practice.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    to="/academy"
+                    className="btn-academy-primary"
+                    aria-label="Find a Course at Organik Beauty Academy"
+                  >
+                    <span>Find a Course</span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
+      </section>
 
-        <span className="split-hero__scroll-note" aria-hidden="true">
-          Scroll to discover
-        </span>
+      {/* Founder Introduction Section (Directly beneath entrances) */}
+      <section className="founder-intro-section" aria-labelledby="founder-title">
+        <div className="page-container">
+          <div className="founder-intro-grid">
+            <div className="founder-intro-portrait">
+              <img
+                src={assets.clinicPortrait}
+                alt="Racheal Morris, owner of Organik Laser & Beauty and lead trainer at Organik Beauty Academy"
+                loading="lazy"
+              />
+            </div>
+            <div className="founder-intro-content">
+              <p className="eyebrow" style={{ color: 'var(--treatments-burgundy)' }}>
+                One Founder · Two Thoughtful Journeys
+              </p>
+              <h2 id="founder-title">
+                Personal care in the clinic. <em>Real guidance in the academy.</em>
+              </h2>
+              <p>
+                Organik is proudly founded and operated by Racheal. With over 8 years of clinical and industry experience,
+                she connects both businesses under one shared ethos: thoughtful, unhurried care and high professional standards.
+              </p>
+              <p style={{ marginTop: '14px' }}>
+                Whether you arrive for a restorative treatment or to learn a new profession, every client and student receives Racheal&rsquo;s personal dedication from day one.
+              </p>
+              <div style={{ marginTop: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <Link to="/treatments/team" className="text-link" style={{ fontWeight: 600, color: 'var(--treatments-burgundy)' }}>
+                  Read Racheal&rsquo;s story &rarr;
+                </Link>
+                <span style={{ fontSize: '0.875rem', color: 'var(--treatments-plum)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <ShieldCheck size={16} aria-hidden="true" /> QLD Health Licensed Practitioner
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Trust Strip */}
@@ -87,7 +164,7 @@ export function HomePage() {
               <Star size={20} aria-hidden="true" />
             </span>
             <span className="trust-item__number">
-              <span>0</span>
+              <span>160+</span>
             </span>
             <span className="trust-item__label">5-star Google reviews</span>
           </div>
@@ -115,45 +192,14 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Personal Section (Story & Owner) */}
-      <div className="reveal">
-        <section className="personal-section section-pad page-container">
-          <div className="personal-section__image-wrap">
-            <img src={assets.clinicPortrait} alt="Organik owner and practitioner Racheal" loading="lazy" />
-            <span className="personal-section__image-note">
-              <Sparkles size={16} aria-hidden="true" /> Personal care, always
-            </span>
-          </div>
-          <div className="personal-section__content">
-            <p className="eyebrow">
-              <span className="eyebrow__line"></span>The Organik feeling
-            </p>
-            <h2>
-              A personal beauty experience, <em>from the moment you arrive.</em>
-            </h2>
-            <p className="personal-section__lead">
-              Organik Laser &amp; Beauty is proudly owner-operated. Every treatment is personally performed by Racheal,
-              in a warm and welcoming space where every client feels valued and cared for.
-            </p>
-            <div className="personal-section__signature">
-              <span>Racheal</span>
-              <small>Owner · Organik Laser &amp; Beauty</small>
-            </div>
-            <ActionLink href="/treatments/team" variant="text">
-              Get to know Racheal
-            </ActionLink>
-          </div>
-        </section>
-      </div>
-
-      {/* Treatments Section */}
+      {/* Curated Treatments Section */}
       <section className="treatments-section section-pad section-pad--soft section-tone--rose" id="treatments">
         <div className="page-container">
           <Reveal>
             <SectionHeading
-              eyebrow="The treatment room"
-              title="Your time, your treatment."
-              description="A few of our most-loved services. Every appointment starts with listening."
+              eyebrow="The Treatment Room"
+              title="Thoughtful beauty, made personal."
+              description="Our most-loved services. Every appointment starts with attentive listening and personalised care."
             />
           </Reveal>
 
@@ -205,10 +251,10 @@ export function HomePage() {
         </Reveal>
       </section>
 
-      {/* Academy Teaser */}
+      {/* Academy Teaser Section */}
       <section className="academy-teaser section-pad page-container section-tone--sage">
         <div className="academy-teaser__visual">
-          <img src={assets.academyHero} alt="Organik Beauty Academy" loading="lazy" />
+          <img src={assets.academyHero} alt="Organik Beauty Academy teaching in practice" loading="lazy" />
           <span className="academy-teaser__badge">
             <GraduationCap size={22} aria-hidden="true" />
             <span>
@@ -220,8 +266,8 @@ export function HomePage() {
         </div>
         <div className="academy-teaser__content">
           <Reveal>
-            <p className="eyebrow">
-              <span className="eyebrow__line"></span>Organik Beauty Academy
+            <p className="eyebrow" style={{ color: 'var(--academy-eucalyptus)' }}>
+              <span className="eyebrow__line" style={{ background: 'var(--academy-eucalyptus)' }}></span>Organik Beauty Academy
             </p>
             <h2>
               Learn a craft. <em>Build a future.</em>
@@ -235,12 +281,12 @@ export function HomePage() {
           <div className="academy-teaser__facts">
             <Reveal>
               <span>
-                <Check size={16} aria-hidden="true" /> Beginner-friendly courses
+                <Check size={16} aria-hidden="true" /> Beginner-friendly courses &amp; masterclasses
               </span>
             </Reveal>
             <Reveal delay={80}>
               <span>
-                <Check size={16} aria-hidden="true" /> Ongoing WhatsApp support after training
+                <Check size={16} aria-hidden="true" /> Ongoing WhatsApp mentorship after training
               </span>
             </Reveal>
             <Reveal delay={160}>
@@ -261,33 +307,37 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Before & After Slider Section */}
-      <section className="before-after-section section-pad section-pad--soft">
-        <div className="page-container before-after-section__inner">
+      {/* 5. Authentic Gallery Presentation (Replacing sample comparison slider with genuine photos) */}
+      <section className="authentic-gallery-section section-pad section-pad--soft">
+        <div className="page-container">
           <Reveal>
             <SectionHeading
-              eyebrow="Before & after"
-              title="See the difference."
-              description="Explore treatment results and student work in our gallery."
+              eyebrow="Real Work & Results"
+              title="A glimpse into the clinic and academy."
+              description="Authentic client transformations and student work captured directly in our Mermaid Beach studio."
               align="center"
             />
           </Reveal>
 
-          <Reveal delay={100} className="before-after-section__slider">
-            <BeforeAfterSlider
-              beforeImage={assets.clinicDetailOne}
-              afterImage={assets.clinicDetailTwo}
-              beforeLabel="Sample image · Before"
-              afterLabel="Sample image · After"
-            />
-          </Reveal>
+          <div className="gallery-preview-grid">
+            {authenticGalleryHighlights.map((item, idx) => (
+              <div key={idx} className="gallery-preview-card">
+                <div className="gallery-preview-card__image">
+                  <img src={item.src} alt={item.alt} loading="lazy" />
+                </div>
+                <div className="gallery-preview-card__caption">
+                  <span>{item.caption}</span>
+                </div>
+              </div>
+            ))}
+          </div>
 
-          <div className="section-link-row section-link-row--center">
+          <div className="section-link-row section-link-row--center" style={{ marginTop: '36px' }}>
             <ActionLink href="/gallery" variant="secondary">
-              Treatment gallery
+              View Clinic Gallery
             </ActionLink>
             <ActionLink href="/gallery?tab=academy" variant="text">
-              Academy gallery
+              View Student Work
             </ActionLink>
           </div>
         </div>
@@ -321,10 +371,10 @@ export function HomePage() {
             <p>Whether you're here for a treatment or a new skill, there's a place for you at Organik.</p>
             <div className="final-invite__actions">
               <ActionLink href="/contact?enquiry=treatments" variant="light">
-                Book an appointment
+                Book a Treatment
               </ActionLink>
               <ActionLink href="/contact?enquiry=academy" variant="outline">
-                Ask about a course
+                Ask about a Course
               </ActionLink>
             </div>
           </Reveal>

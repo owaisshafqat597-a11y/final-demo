@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Check, Clock3, CreditCard, Sparkles, UserCheck } from 'lucide-react';
+import { ArrowRight, Check, Clock3, CreditCard, Sparkles, UserCheck } from 'lucide-react';
 import { courses } from '../data/siteData';
 import { ActionLink, PageIntro, Reveal, SectionHeading } from '../components/Common';
 import { Accordion } from '../components/Accordion';
@@ -101,13 +101,21 @@ export function CourseDetailPage({ explicitSlug }) {
               </span>
             </div>
             {isUpcoming ? (
-              <ActionLink href="/contact?enquiry=academy" variant="primary">
-                Register your interest
-              </ActionLink>
+              <Link
+                to={`/contact?enquiry=academy&course=${encodeURIComponent(course.title)}`}
+                className="btn-academy-primary"
+              >
+                <span>Register Your Interest</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             ) : (
-              <ActionLink href="/contact?enquiry=academy" variant="primary">
-                Enquire about this course
-              </ActionLink>
+              <Link
+                to={`/contact?enquiry=academy&course=${encodeURIComponent(course.title)}`}
+                className="btn-academy-primary"
+              >
+                <span>Enquire About This Course</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             )}
           </div>
         </Reveal>
@@ -195,9 +203,15 @@ export function CourseDetailPage({ explicitSlug }) {
             <p className="eyebrow">Ready to ask?</p>
             <h2>Your next step starts with a conversation.</h2>
             <p>Share your goals and the course you're considering. We'll help you get the information you need.</p>
-            <ActionLink href="/contact?enquiry=academy" variant="primary">
-              Contact the academy
-            </ActionLink>
+            <div style={{ marginTop: '24px' }}>
+              <Link
+                to={`/contact?enquiry=academy&course=${encodeURIComponent(course.title)}`}
+                className="btn-academy-primary"
+              >
+                <span>Enquire About This Course</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
