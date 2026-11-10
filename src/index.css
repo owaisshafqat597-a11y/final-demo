@@ -206,7 +206,7 @@ body {
 .site-shell--treatments .site-header__nav a.is-active {
   color: var(--accent-clinic) !important;
   font-weight: 600 !important;
-  border-bottom: 2px solid var(--accent-clinic) !important;
+  border-bottom: none !important;
 }
 
 .site-shell--academy .site-header__nav a.is-active {
