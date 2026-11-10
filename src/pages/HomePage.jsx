@@ -89,7 +89,7 @@ export function HomePage() {
               <Star size={20} aria-hidden="true" />
             </span>
             <span className="trust-item__number">
-              <span>0</span>
+              <span>160+</span>
             </span>
             <span className="trust-item__label">5-star Google reviews</span>
           </div>
