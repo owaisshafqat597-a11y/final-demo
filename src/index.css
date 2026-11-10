@@ -56,10 +56,11 @@
   --motion-crossfade: 200ms ease-in-out;
   --motion-interactive: 180ms ease;
 
-  /* Structural Geometry: Subtle, refined softening (3px–6px) */
-  --radius-card: 4px;
-  --radius-btn: 3px;
-  --radius-subtle: 3px;
+  /* Structural Geometry: Unique Keratin inspired neat luxury softening */
+  --radius-card: 14px;
+  --radius-btn: 8px;
+  --radius-subtle: 8px;
+  --radius-pill: 999px;
 }
 
 /* Scoped Theme: TREATMENTS */
@@ -390,170 +391,398 @@ p {
 }
 
 /* ==========================================================================
-   HOMEPAGE TWO EQUAL ENTRANCES (RECOMPOSED)
-   Clinic & Academy side-by-side with solid text boxes and clear photography
-   Mobile: both destinations and actions fully visible on first screen!
+   HOMEPAGE LUXURY SPLIT HERO (UNIQUE KERATIN INSPIRED)
+   Elevated, neat, clear dual experience under one master Organik brand.
    ========================================================================== */
-.home-entrances-section {
-  background-color: var(--color-canvas-neutral);
-  padding-top: 32px;
-  padding-bottom: 56px;
+.split-hero {
+  position: relative;
+  display: flex;
+  min-height: 82vh;
+  max-height: 860px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #171413;
 }
 
-.home-entrances-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-}
-
-.entrance-card {
+.split-hero__panel {
+  position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-card);
-  overflow: hidden;
+  justify-content: flex-end;
+  padding: clamp(32px, 5vw, 68px);
   text-decoration: none;
-  color: inherit;
-  transition: transform var(--motion-interactive), box-shadow var(--motion-interactive);
-}
-
-.entrance-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px -10px rgba(40, 20, 25, 0.08);
-}
-
-.entrance-card__image-wrap {
-  position: relative;
-  height: 380px;
   overflow: hidden;
-  background-color: #EFE8DE;
+  transition: flex 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.entrance-card__image-wrap img {
+.split-hero:hover .split-hero__panel:hover {
+  flex: 1.18;
+}
+
+.split-hero:hover .split-hero__panel:not(:hover) {
+  flex: 0.82;
+}
+
+.split-hero__panel img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
+  filter: brightness(0.85);
 }
 
-.entrance-card:hover .entrance-card__image-wrap img {
-  transform: scale(1.03);
+.split-hero__panel:hover img {
+  transform: scale(1.055);
+  filter: brightness(0.96);
 }
 
-.entrance-card__solid-body {
-  padding: 32px 36px 36px;
+.split-hero__wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.split-hero__panel--treatments .split-hero__wash {
+  background: linear-gradient(180deg, rgba(72, 30, 45, 0.2) 0%, rgba(72, 30, 45, 0.45) 50%, rgba(45, 14, 25, 0.92) 100%);
+}
+
+.split-hero__panel--academy .split-hero__wash {
+  background: linear-gradient(180deg, rgba(23, 63, 56, 0.2) 0%, rgba(23, 63, 56, 0.45) 50%, rgba(12, 35, 31, 0.94) 100%);
+}
+
+.split-hero__corner {
+  position: absolute;
+  top: 32px;
+  left: clamp(28px, 4.5vw, 64px);
+  z-index: 2;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.split-hero__content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+  gap: 8px;
+  max-width: 480px;
 }
 
-/* Clinic Entrance styling */
-.entrance-card--clinic {
-  border-top: 3px solid var(--treatments-burgundy);
+.split-hero__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.entrance-card--clinic .entrance-card__solid-body {
-  background: var(--treatments-canvas);
+.split-hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+  line-height: 1.15;
+  color: #FAF7F2;
+  margin-top: 4px;
 }
 
-.entrance-card--clinic h2 {
+.split-hero__title em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.split-hero__panel--treatments .split-hero__title em {
+  color: #F4E5DF;
+}
+
+.split-hero__panel--academy .split-hero__title em {
+  color: #E0E8DC;
+}
+
+.split-hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 16px;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  color: #FAF7F2;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.split-hero__panel:hover .split-hero__link {
+  background: #FAF7F2;
+  color: #2B2622;
+  border-color: #FAF7F2;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Iconic Center Floating Glassmorphic Lockup (Unique Keratin inspired) */
+.split-hero__center-lockup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  width: min(440px, 88%);
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 50px -12px rgba(20, 10, 15, 0.25), 0 0 0 1px rgba(216, 197, 157, 0.35);
+  border-radius: 20px;
+  padding: 34px 40px;
+  text-align: center;
+}
+
+.split-hero__center-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--treatments-copper);
+  margin-bottom: 6px;
+}
+
+.split-hero__center-lockup h1#home-title {
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 3.4vw, 2.9rem);
+  line-height: 1.12;
+  color: #2B2622;
+  margin: 4px 0 10px;
+  font-weight: 400;
+}
+
+.split-hero__center-lockup h1#home-title em {
+  font-style: italic;
   color: var(--treatments-burgundy);
-  font-size: 2.2rem;
-  margin-top: 6px;
-  margin-bottom: 12px;
 }
 
-.entrance-card--clinic p {
-  color: var(--treatments-plum);
-  font-size: 1rem;
-  margin-bottom: 24px;
+.split-hero__center-rule {
+  display: block;
+  width: 48px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #AF8273, transparent);
+  margin: 12px auto;
 }
 
-/* Academy Entrance styling */
-.entrance-card--academy {
-  border-top: 3px solid var(--academy-eucalyptus);
+.split-hero__center-lockup p {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: #65464C;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
-.entrance-card--academy .entrance-card__solid-body {
-  background: var(--academy-parchment);
+.split-hero__scroll-note {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
 }
 
-.entrance-card--academy h2 {
-  color: var(--academy-eucalyptus);
-  font-size: 2.2rem;
-  margin-top: 6px;
-  margin-bottom: 12px;
+/* Mobile Split Hero (Responsive for 360px & 390px viewports) */
+@media (max-width: 840px) {
+  .split-hero {
+    flex-direction: column;
+    min-height: auto;
+    max-height: none;
+    padding-bottom: 20px;
+  }
+
+  .split-hero__center-lockup {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: calc(100% - 32px);
+    margin: 20px auto 14px;
+    padding: 24px 20px;
+    border-radius: 16px;
+    pointer-events: auto;
+    order: -1;
+  }
+
+  .split-hero__panel {
+    min-height: 290px;
+    padding: 36px 24px 28px;
+    margin: 0 16px 12px;
+    border-radius: 16px;
+  }
+
+  .split-hero__corner {
+    top: 20px;
+    left: 24px;
+  }
+
+  .split-hero__scroll-note {
+    display: none;
+  }
 }
 
-.entrance-card--academy p {
-  color: var(--academy-dark-text);
-  font-size: 1rem;
-  margin-bottom: 24px;
+/* Interactive Before & After Slider (Unique Keratin inspired) */
+.before-after-section {
+  background-color: var(--color-canvas-neutral);
 }
 
-/* Entrances primary action buttons */
-.btn-treatments-primary {
-  display: inline-flex;
+.before-after__frame {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -12px rgba(40, 20, 25, 0.12), 0 0 0 1px rgba(216, 197, 157, 0.35);
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+  background-color: #EFE8DE;
+}
+
+.before-after__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.before-after__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.before-after__image--after {
+  clip-path: polygon(0 0, var(--split, 50%) 0, var(--split, 50%) 100%, 0 100%);
+}
+
+.before-after__label {
+  position: absolute;
+  top: 20px;
+  z-index: 3;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #2B2622;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.before-after__image--before .before-after__label {
+  right: 20px;
+}
+
+.before-after__image--after .before-after__label {
+  left: 20px;
+}
+
+.before-after__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split, 50%);
+  width: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  transform: translateX(-50%);
+  outline: none;
+}
+
+.before-after__handle-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid var(--treatments-copper);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background-color: var(--treatments-burgundy);
-  color: var(--treatments-canvas) !important;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 13px 26px;
-  border-radius: var(--radius-btn);
-  border: 1px solid var(--treatments-burgundy);
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--motion-interactive), transform var(--motion-interactive);
+  color: var(--treatments-burgundy);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-treatments-primary:hover {
-  background-color: #381521;
+.before-after__frame:hover .before-after__handle-icon {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-.btn-treatments-primary svg {
-  transition: transform var(--motion-interactive);
-}
-
-.btn-treatments-primary:hover svg,
-.btn-treatments-primary:focus-visible svg {
-  transform: translateX(3px);
-}
-
-.btn-academy-primary {
-  display: inline-flex;
+.before-after__handle-arrows {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background-color: var(--academy-eucalyptus);
-  color: var(--academy-parchment) !important;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 13px 26px;
-  border-radius: var(--radius-btn);
-  border: 1px solid var(--academy-eucalyptus);
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--motion-interactive), transform var(--motion-interactive);
+  line-height: 1;
 }
 
-.btn-academy-primary:hover {
-  background-color: #0f2b26;
+.before-after__handle-label {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: -2px;
 }
 
-.btn-academy-primary svg {
-  transition: transform var(--motion-interactive);
-}
-
-.btn-academy-primary:hover svg,
-.btn-academy-primary:focus-visible svg {
-  transform: translateX(3px);
+.before-after__note {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  margin: 0;
+  pointer-events: none;
 }
 
 /* Authentic Gallery Highlights Grid */
@@ -620,40 +849,7 @@ p {
   }
 }
 
-/* Mobile First-Screen Entrances (360px & 390px viewports) */
-@media (max-width: 840px) {
-  .home-entrances-section {
-    padding-top: 16px;
-    padding-bottom: 36px;
-  }
 
-  .home-entrances-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  /* Compact top panels on mobile to fit above the fold */
-  .entrance-card__image-wrap {
-    height: 180px;
-  }
-
-  .entrance-card__solid-body {
-    padding: 20px 22px 24px;
-  }
-
-  .entrance-card--clinic h2,
-  .entrance-card--academy h2 {
-    font-size: 1.65rem;
-    margin-bottom: 8px;
-  }
-
-  .entrance-card--clinic p,
-  .entrance-card--academy p {
-    font-size: 0.9375rem;
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-}
 
 /* ==========================================================================
    FOUNDER INTRODUCTION (Racheal connects clinic & academy)
@@ -1328,6 +1524,181 @@ p {
 .site-footer.site-footer--home {
   background-color: #241D21 !important;
   color: #E8E0D7;
+}
+
+/* ==========================================================================
+   UNIQUE KERATIN INSPIRED NEAT & CLEAR LUXURY POLISH
+   High-contrast, elegant glassmorphism, soft dropshadows, smooth hover lifts
+   ========================================================================== */
+
+/* Trust Strip with Elevated Glass Cards */
+.trust-strip {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(232, 225, 215, 0.8);
+  padding: 24px 0;
+}
+
+.trust-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(250, 247, 242, 0.65);
+  border: 1px solid rgba(232, 225, 215, 0.7);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.trust-item:hover {
+  transform: translateY(-2px);
+  background: #FAF7F2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.trust-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.trust-item__number {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #2B2622;
+  line-height: 1.1;
+  display: block;
+}
+
+.trust-item__number--text {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.trust-item__label {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.25;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .trust-strip__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-strip__inner {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* Luxury Card Hover & Structure */
+.image-card,
+.course-card {
+  border-radius: 14px !important;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(216, 197, 157, 0.35);
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.image-card:hover,
+.course-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px -8px rgba(72, 30, 45, 0.1) !important;
+}
+
+.image-card__image,
+.course-card__image {
+  overflow: hidden;
+  border-radius: 14px 14px 0 0 !important;
+}
+
+.image-card__image img,
+.course-card__image img {
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.image-card:hover .image-card__image img,
+.course-card:hover .course-card__image img {
+  transform: scale(1.055) !important;
+}
+
+/* Special Offer Banner Card */
+.offer-card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.2);
+}
+
+.offer-card img {
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.offer-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Reviews Carousel Luxury Glass Touch */
+.review-card {
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(232, 225, 215, 0.9) !important;
+  box-shadow: 0 12px 35px -8px rgba(40, 20, 25, 0.08) !important;
+  padding: clamp(28px, 4vw, 44px) !important;
+}
+
+/* Final Invite Styling */
+.final-invite {
+  background: linear-gradient(135deg, #241D21 0%, #173F38 100%);
+  color: #FAF7F2;
+  padding: clamp(64px, 8vw, 100px) 0;
+  text-align: center;
+}
+
+.final-invite h2 {
+  color: #FAF7F2 !important;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.final-invite p {
+  color: rgba(250, 247, 242, 0.85);
+  max-width: 580px;
+  margin: 12px auto 32px;
+}
+
+.final-invite__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 /* ==========================================================================
