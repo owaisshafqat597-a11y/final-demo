@@ -145,7 +145,7 @@ export function ContactPage() {
     <main className="page page--shared page-motion">
       <PageIntro
         eyebrow="We're here to help"
-        title="Say hello."
+        title="Contact us."
         description="Ask a question about a treatment, course or visit. We'd love to hear from you."
         breadcrumbs={[{ label: 'Organik', href: '/' }, { label: 'Contact' }]}
         compact
