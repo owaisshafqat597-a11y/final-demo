@@ -70,7 +70,6 @@ export function BeforeAfterSlider({ beforeImage, afterImage, beforeLabel = "Befo
           <span className="before-after__handle-label" aria-hidden="true">Drag</span>
         </span>
       </div>
-      <p className="before-after__note">Demo images only. Replace with approved before-and-after content.</p>
     </div>
   );
 }
