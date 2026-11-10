@@ -1,38 +1,98 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { assets, courses } from '../data/siteData';
-import { ActionLink, PageIntro, Reveal } from '../components/Common';
-import { CourseFinder } from '../components/CourseFinder';
+import { ActionLink, CourseCard, PageIntro, Reveal } from '../components/Common';
+
+const categories = ['All courses', ...Array.from(new Set(courses.map((c) => c.category)))];
 
 export function CoursesPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All courses');
+
+  const filteredCourses = useMemo(() => {
+    if (selectedCategory === 'All courses') return courses;
+    return courses.filter((c) => c.category === selectedCategory);
+  }, [selectedCategory]);
+
   return (
-    <main className="page page--academy page-motion" data-division="academy">
+    <main className="page page--academy page-motion">
       <PageIntro
         eyebrow="Organik Beauty Academy"
         title="Courses for your next chapter."
-        description="Career-focused beauty education, delivered in an intimate and supportive Mermaid Beach studio. Compare course pathways, levels and entry details below."
+        description="Career-focused beauty education, delivered in a personal and supportive setting."
         breadcrumbs={[
           { label: 'Organik', href: '/' },
           { label: 'Academy', href: '/academy' },
           { label: 'Courses' }
         ]}
         image={assets.academyHero}
-        imageAlt="Organik Beauty Academy original training imagery"
+        imageAlt="Organik Beauty Academy original website imagery"
       />
 
-      {/* Integrated Interactive Course Finder with persistent session state */}
-      <CourseFinder showIntro={false} />
+      <section className="section-pad page-container course-catalogue">
+        <Reveal>
+          <div className="course-catalogue__intro">
+            <div>
+              <p className="eyebrow">Find your pathway</p>
+              <h2>Explore the course menu.</h2>
+            </div>
+            <p>
+              Course details, pricing and entry information are confirmed directly with the academy. One card per
+              available course — no duplicate listings.
+            </p>
+          </div>
+        </Reveal>
 
-      {/* Academy Enrolment Support Footer */}
-      <section className="section-pad page-container" style={{ paddingTop: '16px' }}>
-        <div className="course-catalogue__footer" style={{ background: 'var(--academy-parchment)', border: '1px solid var(--color-border-subtle)', borderRadius: 'var(--radius-card)', padding: '36px', textAlign: 'center' }}>
-          <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.8rem', color: 'var(--academy-eucalyptus)', marginBottom: '8px' }}>
-            Have a question about dates, custom kits or payment plans?
-          </h3>
-          <p style={{ color: 'var(--academy-dark-text)', maxWidth: '520px', margin: '0 auto 24px', lineHeight: 1.6 }}>
-            Every prospective student is welcome to speak with Racheal directly before committing to ensure the curriculum aligns with your goals.
-          </p>
+        {/* Filter Chips */}
+        <div className="filter-row" role="group" aria-label="Filter courses by category">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              className={`filter-chip ${selectedCategory === cat ? 'is-active' : ''}`}
+              aria-pressed={selectedCategory === cat}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Courses Display */}
+        {selectedCategory === 'All courses' ? (
+          Array.from(new Set(courses.map((c) => c.category))).map((cat) => {
+            const catCourses = courses.filter((c) => c.category === cat);
+            const slug = cat.replace(/\W+/g, '-').toLowerCase();
+            return (
+              <section key={cat} className="course-category" aria-labelledby={`course-category-${slug}`}>
+                <div className="course-category__heading">
+                  <h2 id={`course-category-${slug}`}>{cat}</h2>
+                  <span>
+                    {catCourses.length} {catCourses.length === 1 ? 'course' : 'courses'}
+                  </span>
+                </div>
+                <div className="course-grid">
+                  {catCourses.map((c, idx) => (
+                    <Reveal key={c.slug} delay={(idx % 3) * 60}>
+                      <CourseCard course={c} index={idx} />
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+            );
+          })
+        ) : (
+          <div className="course-grid course-grid--filtered">
+            {filteredCourses.map((c, idx) => (
+              <Reveal key={c.slug} delay={(idx % 3) * 60}>
+                <CourseCard course={c} index={idx} />
+              </Reveal>
+            ))}
+          </div>
+        )}
+
+        <div className="course-catalogue__footer">
+          <p>Have a question about course dates, kits or payment options?</p>
           <ActionLink href="/contact?enquiry=academy" variant="secondary">
-            Enquire with the Academy
+            Enquire with the academy
           </ActionLink>
         </div>
       </section>

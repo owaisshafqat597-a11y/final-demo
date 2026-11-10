@@ -28,10 +28,10 @@ const treatmentPriceTabs = [
 ];
 
 const groupBadges = {
-  'Lip Tattoo': 'Lips & Contour',
-  'Brow Tattoo': 'Brows & Shape',
-  'Eyeliner Tattoo': 'Lash Line & Eyeliner',
-  'Packages': 'Bespoke Packages'
+  'Lip Tattoo': '✨ Most Requested Lips',
+  'Brow Tattoo': '✨ Signature Brows',
+  'Eyeliner Tattoo': '✨ Subtle Definition',
+  'Packages': '✨ Best Value Bundles'
 };
 
 function PriceTable({ rows, caption, durationLabel = 'Appointment', isAcademy = false }) {
@@ -58,17 +58,16 @@ function PriceTable({ rows, caption, durationLabel = 'Appointment', isAcademy = 
                 <span className="duration-pill">{row.duration || 'Enquire for details'}</span>
               </td>
               <td>
-                <strong style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', color: isAcademy ? 'var(--academy-eucalyptus)' : 'var(--treatments-burgundy)' }}>
+                <span className={isAcademy ? 'green-badge-pill' : 'price-highlight-pill'}>
                   {row.price}
-                </strong>
+                </span>
               </td>
               <td style={{ textAlign: 'right' }}>
                 <Link
-                  to={isAcademy ? `/contact?enquiry=academy&course=${encodeURIComponent(row.service)}` : `/contact?enquiry=treatments&treatment=${encodeURIComponent(row.service)}`}
+                  to={isAcademy ? '/contact?enquiry=academy' : '/contact?enquiry=treatments'}
                   className="price-row-action"
-                  style={{ color: isAcademy ? 'var(--academy-eucalyptus)' : 'var(--treatments-burgundy)', fontWeight: 600 }}
                 >
-                  {isAcademy ? 'Enquire' : 'Book'} <ArrowRight size={13} aria-hidden="true" />
+                  {isAcademy ? 'Enrol' : 'Book'} <ArrowRight size={13} aria-hidden="true" />
                 </Link>
               </td>
             </tr>
@@ -303,7 +302,7 @@ export function PricingPage() {
 
   // Full /pricing hub view
   return (
-    <main className="page page--pricing page-motion" data-division={division}>
+    <main className="page page--pricing page-motion">
       <PageIntro
         eyebrow="Pricing"
         title="Clear, honest pricing."
@@ -414,12 +413,9 @@ export function PricingPage() {
 
               <div className="price-list-page__footer">
                 <p>Prices and offers are subject to availability. Final details are confirmed directly with Organik.</p>
-                <div style={{ marginTop: '20px' }}>
-                  <Link to="/contact?enquiry=treatments" className="btn-treatments-primary">
-                    <span>Book a Treatment</span>
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                </div>
+                <ActionLink href="/contact?enquiry=treatments" variant="primary">
+                  Book appointment
+                </ActionLink>
               </div>
             </>
           ) : (
@@ -450,7 +446,7 @@ export function PricingPage() {
                 <div className="tattoo-prices__heading">
                   <div>
                     <h3>Academy Course Tuition</h3>
-                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--academy-eucalyptus)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Career Pathways</span>
+                    <span className="green-badge-pill">✨ Career Pathways</span>
                   </div>
                   <span style={{ fontSize: '0.85rem', color: '#586960' }}>Duration &amp; Fees</span>
                 </div>
@@ -488,12 +484,9 @@ export function PricingPage() {
 
               <div className="price-list-page__footer">
                 <p>Course dates, kits and pricing are confirmed directly with the academy before enrolment.</p>
-                <div style={{ marginTop: '20px' }}>
-                  <Link to="/contact?enquiry=academy" className="btn-academy-primary">
-                    <span>Enquire About a Course</span>
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                </div>
+                <ActionLink href="/contact?enquiry=academy" variant="primary">
+                  Enrol now
+                </ActionLink>
               </div>
             </>
           )}

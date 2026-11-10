@@ -177,32 +177,9 @@ export function TreatmentDetailPage({ explicitSlug }) {
                 ? "Plasma Fibroblast appointments begin with a personal conversation about the area, your questions and the offer details. Suitability and aftercare are always discussed before booking."
                 : "Every appointment starts with a conversation about the service, your preferences and what you would like to know. Racheal will walk you through the details before you decide."}
             </p>
-            <div className="treatment-detail-hero__pricing-bar" style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', margin: '20px 0 24px' }}>
-              <div style={{ background: 'var(--treatments-panel)', padding: '10px 18px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--treatments-panel-border)' }}>
-                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--treatments-copper)', display: 'block' }}>Pricing Info</span>
-                <strong style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', color: 'var(--treatments-burgundy)' }}>{treatment.prices || 'Enquire for pricing'}</strong>
-              </div>
-              {treatment.duration && (
-                <div style={{ background: 'var(--treatments-panel)', padding: '10px 18px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--treatments-panel-border)' }}>
-                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--treatments-copper)', display: 'block' }}>Duration</span>
-                  <strong style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', color: 'var(--treatments-burgundy)' }}>{treatment.duration}</strong>
-                </div>
-              )}
-            </div>
-
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-              <Link
-                to={`/contact?enquiry=treatments&treatment=${encodeURIComponent(treatment.title)}`}
-                className="btn-treatments-primary"
-                aria-label={`Book a Treatment - ${treatment.title}`}
-              >
-                <span>Book a Treatment</span>
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <Link to="/pricing" className="text-link" style={{ color: 'var(--treatments-burgundy)', fontWeight: 600 }}>
-                View full pricing guide &rarr;
-              </Link>
-            </div>
+            <ActionLink href="/contact?enquiry=treatments" variant="primary">
+              Ask about this service
+            </ActionLink>
           </div>
         </Reveal>
 
@@ -485,15 +462,11 @@ export function TreatmentDetailPage({ explicitSlug }) {
             <h2>Let's find the right appointment.</h2>
             <p>Send an enquiry or take a look at the current treatment menu and pricing.</p>
             <div className="soft-cta__actions">
-              <Link
-                to={`/contact?enquiry=treatments&treatment=${encodeURIComponent(treatment.title)}`}
-                className="btn-treatments-primary"
-              >
-                <span>Book a Treatment</span>
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <ActionLink href="/pricing" variant="text">
-                See full pricing
+              <ActionLink href="/contact?enquiry=treatments" variant="primary">
+                Enquire now
+              </ActionLink>
+              <ActionLink href="/treatments/price-list" variant="text">
+                See the price list
               </ActionLink>
             </div>
           </Reveal>
