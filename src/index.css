@@ -1733,3 +1733,232 @@ body {
   line-height: 1.6 !important;
   color: #38312D !important;
 }
+
+
+/* ==========================================================================
+   PRICING ENHANCEMENTS: BOXED OFFERS, PROMINENT TERMS CARDS & LARGER FOOTER TEXT
+   ========================================================================== */
+
+/* 1. Distinct Boxed Styling for Plasma Offers (Image 1) */
+.plasma-offers-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+  margin-bottom: 36px !important;
+}
+
+@media (max-width: 900px) {
+  .plasma-offers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .plasma-offers-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.plasma-offer-card {
+  background: #FFFFFF !important;
+  border: 1.5px solid #E2D9CE !important;
+  border-radius: 14px !important;
+  padding: 24px 22px !important;
+  box-shadow: 0 4px 14px rgba(35, 25, 20, 0.04) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: 220px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+  position: relative !important;
+}
+
+.plasma-offer-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: #C89BA8 !important;
+  box-shadow: 0 12px 28px rgba(120, 37, 59, 0.1) !important;
+}
+
+.plasma-offer-card .pink-badge-pill,
+.plasma-offer-card .eyebrow {
+  background: #FAF0F3 !important;
+  color: #78253B !important;
+  border: 1px solid #F0D5DD !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  margin-bottom: 12px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  max-width: max-content !important;
+}
+
+.plasma-offer-card h3 {
+  font-family: var(--serif) !important;
+  font-size: 21px !important;
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.25 !important;
+}
+
+.plasma-offer-card__price {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  margin: 8px 0 18px 0 !important;
+}
+
+.plasma-offer-card__price s {
+  font-size: 14px !important;
+  color: #8A817A !important;
+  text-decoration: line-through !important;
+}
+
+.plasma-offer-card__price strong {
+  font-family: var(--serif) !important;
+  font-size: 27px !important;
+  color: #78253B !important;
+  font-weight: 700 !important;
+}
+
+.plasma-offer-card .text-link {
+  color: #78253B !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-top: auto !important;
+  padding-top: 10px !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.plasma-offer-card .text-link:hover {
+  transform: translateX(4px) !important;
+  color: #521524 !important;
+}
+
+/* 2. Prominent Separate Boxes for Payment/Pricing Terms (Images 2 & 3) */
+.trainer-values.pricing-terms {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+  margin-top: 36px !important;
+  margin-bottom: 36px !important;
+}
+
+@media (max-width: 850px) {
+  .trainer-values.pricing-terms {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+.pricing-terms .value-card,
+.value-card {
+  background: #FFFFFF !important;
+  border: 1.5px solid #DDD3C6 !important;
+  border-radius: 16px !important;
+  padding: 28px 24px !important;
+  box-shadow: 0 4px 18px rgba(35, 25, 20, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  min-height: auto !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.pricing-terms .value-card:hover,
+.value-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 30px rgba(35, 25, 20, 0.1) !important;
+  border-color: #B8ADA0 !important;
+}
+
+.value-card > span {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Treatment terms icons (Warm rose tint) */
+.site-shell--treatments .value-card > span,
+.price-list-page .pricing-terms .value-card > span {
+  background: #FAF0F3 !important;
+  color: #78253B !important;
+  border: 1px solid #F0D5DD !important;
+}
+
+/* Academy terms icons (Eucalyptus sage tint) */
+.site-shell--academy .value-card > span,
+.pricing-terms .value-card span[style*="var(--c-forest)"] {
+  background: #F0F6F3 !important;
+  color: #173F38 !important;
+  border: 1px solid #CFE3D8 !important;
+}
+
+.value-card h3 {
+  font-family: var(--serif) !important;
+  font-size: 21px !important;
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  margin: 0 0 6px 0 !important;
+  line-height: 1.25 !important;
+}
+
+.value-card p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #4E4844 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 3. Larger Readable Footer Text for Both Treatment & Academy Pricing (Images 2 & 3) */
+.price-list-page__footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  padding-top: 28px !important;
+  margin-top: 36px !important;
+  border-top: 1px solid #E6DED4 !important;
+}
+
+.price-list-page__footer p,
+.course-catalogue__footer p,
+.shop-page__footer p,
+.policies-page__footer p {
+  font-size: 14.5px !important;
+  color: #38312D !important;
+  line-height: 1.6 !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  max-width: 600px !important;
+}
+
+.price-list-page__footer .action-link {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 12px 28px !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.25s ease !important;
+}
+
+.price-list-page__footer .action-link:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18) !important;
+}
