@@ -179,28 +179,32 @@ export function ContactPage() {
 
             <div className="contact-aside__links">
               <a href={siteConfig.phoneHref}>
-                <Phone aria-hidden="true" />
+                <span className="contact-aside__icon-circle">
+                  <Phone size={15} aria-hidden="true" />
+                </span>
                 <span>
                   <small>Clinic phone</small>
                   {siteConfig.phone}
                 </span>
               </a>
               <a href={siteConfig.mobileHref}>
-                <Smartphone aria-hidden="true" />
+                <span className="contact-aside__icon-circle">
+                  <Smartphone size={15} aria-hidden="true" />
+                </span>
                 <span>
                   <small>Call or WhatsApp</small>
                   {siteConfig.mobile}
                 </span>
               </a>
               <a href={`mailto:${siteConfig.treatmentsEmail}`}>
-                <span className="contact-aside__email-icon">@</span>
+                <span className="contact-aside__icon-circle contact-aside__email-icon">@</span>
                 <span>
                   <small>Treatment enquiries</small>
                   {siteConfig.treatmentsEmail}
                 </span>
               </a>
               <a href={`mailto:${siteConfig.academyEmail}`}>
-                <span className="contact-aside__email-icon">@</span>
+                <span className="contact-aside__icon-circle contact-aside__email-icon">@</span>
                 <span>
                   <small>Academy enquiries</small>
                   {siteConfig.academyEmail}

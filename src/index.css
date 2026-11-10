@@ -2105,19 +2105,19 @@ body {
 }
 
 /* ==========================================================================
-   CONTACT PAGE: NORMAL READABLE TEXT SIZES FOR ASIDE CONTAINER
+   CONTACT PAGE: REFINED CONTACT ASIDE & UNIFORM BALANCED ICONS
    ========================================================================== */
 .contact-aside {
   background: #F4EFEB !important;
   border: 1.5px solid #DFD7CC !important;
   border-radius: 16px !important;
-  padding: 32px 28px !important;
+  padding: 28px 24px !important;
   box-shadow: 0 4px 18px rgba(35, 25, 20, 0.04) !important;
 }
 
 .contact-aside__intro h2 {
   font-family: var(--serif) !important;
-  font-size: 28px !important;
+  font-size: 26px !important;
   line-height: 1.2 !important;
   color: #1C1917 !important;
   margin: 0 0 8px 0 !important;
@@ -2130,17 +2130,17 @@ body {
 }
 
 .contact-aside__intro > p:not(.eyebrow) {
-  font-size: 14px !important;
-  line-height: 1.6 !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
   color: #554E48 !important;
-  margin: 6px 0 20px 0 !important;
+  margin: 6px 0 18px 0 !important;
 }
 
 .contact-aside__address {
-  font-size: 14.5px !important;
+  font-size: 13.5px !important;
   font-weight: 600 !important;
   color: #1C1917 !important;
-  padding-block: 16px !important;
+  padding-block: 14px !important;
   border-top: 1px solid #DCD4C8 !important;
   border-bottom: 1px solid #DCD4C8 !important;
   gap: 12px !important;
@@ -2155,15 +2155,15 @@ body {
 }
 
 .contact-aside__address svg:first-child {
-  width: 20px !important;
-  height: 20px !important;
+  width: 17px !important;
+  height: 17px !important;
   color: #78253B !important;
   flex-shrink: 0 !important;
 }
 
 .contact-aside__address svg:last-child {
-  width: 16px !important;
-  height: 16px !important;
+  width: 15px !important;
+  height: 15px !important;
   color: #78253B !important;
   margin-left: auto !important;
   flex-shrink: 0 !important;
@@ -2172,14 +2172,14 @@ body {
 .contact-aside__links {
   display: grid !important;
   gap: 16px !important;
-  padding-block: 20px !important;
+  padding-block: 18px !important;
 }
 
 .contact-aside__links a {
   display: flex !important;
   align-items: center !important;
-  gap: 14px !important;
-  font-size: 15px !important;
+  gap: 12px !important;
+  font-size: 13.5px !important;
   font-weight: 600 !important;
   color: #1C1917 !important;
   text-decoration: none !important;
@@ -2191,65 +2191,88 @@ body {
   color: #78253B !important;
 }
 
-.contact-aside__links a > svg,
+.contact-aside__icon-circle,
 .contact-aside__email-icon {
-  width: 40px !important;
-  height: 40px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
   border-radius: 50% !important;
   background: #FFFFFF !important;
   color: #78253B !important;
-  border: 1px solid #DDD4C8 !important;
-  display: flex !important;
+  border: 1px solid #DCD3C7 !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
-.contact-aside__links a > svg {
-  padding: 0 !important;
-  width: 18px !important;
-  height: 18px !important;
+.contact-aside__icon-circle svg {
+  width: 15px !important;
+  height: 15px !important;
+  color: #78253B !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+.contact-aside__email-icon {
+  font-family: var(--serif) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+.contact-aside__links a span:not(.contact-aside__icon-circle):not(.contact-aside__email-icon) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
 }
 
 .contact-aside__links small {
-  font-size: 11px !important;
+  font-size: 10.5px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  color: #756D66 !important;
-  margin-bottom: 2px !important;
+  color: #706760 !important;
   display: block !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1px !important;
 }
 
 .contact-aside__hours {
   background: #FFFFFF !important;
   border: 1px solid #DDD4C8 !important;
   border-radius: 14px !important;
-  padding: 20px 22px !important;
-  margin-top: 16px !important;
+  padding: 18px 20px !important;
+  margin-top: 14px !important;
   box-shadow: 0 2px 10px rgba(35, 25, 20, 0.03) !important;
 }
 
 .contact-aside__hours .hours-card__heading {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  margin-bottom: 14px !important;
+  gap: 10px !important;
+  margin-bottom: 12px !important;
   border-bottom: 1px solid #F0ECE4 !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 8px !important;
 }
 
 .contact-aside__hours .hours-card__heading h3 {
   font-family: var(--serif) !important;
-  font-size: 18px !important;
+  font-size: 17px !important;
   color: #1C1917 !important;
   margin: 0 !important;
   font-weight: 600 !important;
 }
 
 .contact-aside__hours .hours-card__heading p {
-  font-size: 12.5px !important;
+  font-size: 12px !important;
   color: #756D66 !important;
   margin: 0 !important;
 }
@@ -2257,8 +2280,8 @@ body {
 .contact-aside__hours .hours-card__row {
   display: flex !important;
   justify-content: space-between !important;
-  font-size: 13.5px !important;
-  line-height: 1.65 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
   color: #38312D !important;
-  margin: 6px 0 !important;
+  margin: 5px 0 !important;
 }
