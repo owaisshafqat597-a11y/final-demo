@@ -389,7 +389,7 @@ export const galleryPhotos = [
 
 export const reviews = [
   {
-    name: "Jennifer",
+    name: "Jennifer M.",
     when: "2 weeks ago",
     service: "Brows & lashes",
     quote: "Thank you Racheal! If I could give more than 5 stars I would — professional, kind, friendly and on time. I am so happy with my eyebrows and eyelashes and will continue to come here from now on."
@@ -405,6 +405,30 @@ export const reviews = [
     when: "3 weeks ago",
     service: "Deluxe Classic lashes",
     quote: "I have had the Deluxe Classic eyelashes on two separate occasions. The quality was outstanding, lasting me a fair few months — and I am very rough with my eyes. Very impressive service."
+  },
+  {
+    name: "Chloe Harrison",
+    when: "1 month ago",
+    service: "Cosmetic Lip Blush",
+    quote: "Racheal is an absolute artist with cosmetic tattooing! She mapped my lips to perfection and explained every step. The color healed beautifully natural. I could not be happier!"
+  },
+  {
+    name: "Emma S.",
+    when: "2 months ago",
+    service: "Organik Beauty Academy Student",
+    quote: "I completed the 1-Day Eyelash Extension training with Racheal. The one-on-one attention and live model practice gave me the confidence to launch my own lash business. The ongoing mentorship is priceless."
+  },
+  {
+    name: "Jessica Reid",
+    when: "3 weeks ago",
+    service: "Plasma Fibroblast",
+    quote: "Had upper eyelid plasma fibroblast treatment. Racheal's clinic is immaculate and her consultation is so thorough. The skin tightening results exceeded my expectations."
+  },
+  {
+    name: "Tayla B.",
+    when: "1 month ago",
+    service: "Volume Lash Full Set",
+    quote: "Best lash artist on the Gold Coast hands down! Retention is incredible and my natural lashes stay healthy. Her Mermaid Beach studio is so peaceful and relaxing."
   }
 ];
 

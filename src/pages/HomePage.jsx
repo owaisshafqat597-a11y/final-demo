@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -10,12 +10,14 @@ import {
   Sparkles,
   Star
 } from 'lucide-react';
-import { assets, treatments } from '../data/siteData';
+import { assets, treatments, beforeAfterComparisons } from '../data/siteData';
 import { ActionLink, ImageCard, Reveal, SectionHeading } from '../components/Common';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { ReviewCarousel, StarRating } from '../components/ReviewCarousel';
 
 export function HomePage() {
+  const [activeBaIndex, setActiveBaIndex] = useState(0);
+  const currentBa = (beforeAfterComparisons && beforeAfterComparisons[activeBaIndex]) || beforeAfterComparisons[0];
   const featuredTreatments = [
     treatments.find((t) => t.slug === 'cosmetic-tattoo'),
     treatments.find((t) => t.slug === 'plasma-fibroblast'),
@@ -261,26 +263,47 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Before & After Slider Section */}
+      {/* Before & After Slider Section (Unique Keratin inspired interactive tabs) */}
       <section className="before-after-section section-pad section-pad--soft">
         <div className="page-container before-after-section__inner">
           <Reveal>
             <SectionHeading
-              eyebrow="Before & after"
+              eyebrow="Clinical & Academy Results"
               title="See the difference."
-              description="Explore treatment results and student work in our gallery."
+              description="Authentic client transformations and student live-model work."
               align="center"
             />
           </Reveal>
 
-          <Reveal delay={100} className="before-after-section__slider">
+          {/* Interactive BA Tabs */}
+          <div className="ba-tabs-wrapper">
+            <div className="ba-tabs-list" role="tablist" aria-label="Before and after results">
+              {beforeAfterComparisons.slice(0, 5).map((item, idx) => (
+                <button
+                  key={item.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeBaIndex === idx}
+                  className={'ba-tab-btn' + (activeBaIndex === idx ? ' is-active' : '')}
+                  onClick={() => setActiveBaIndex(idx)}
+                >
+                  <span>{item.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="ba-slider-presentation">
+            <span className="ba-category-badge">
+              {currentBa.division === 'academy' ? 'Academy Student Result' : 'Clinic Result'} · {currentBa.category}
+            </span>
             <BeforeAfterSlider
-              beforeImage={assets.clinicDetailOne}
-              afterImage={assets.clinicDetailTwo}
-              beforeLabel="Sample image · Before"
-              afterLabel="Sample image · After"
+              beforeImage={currentBa.before}
+              afterImage={currentBa.after}
+              beforeLabel="Before"
+              afterLabel="After"
             />
-          </Reveal>
+          </div>
 
           <div className="section-link-row section-link-row--center">
             <ActionLink href="/gallery" variant="secondary">

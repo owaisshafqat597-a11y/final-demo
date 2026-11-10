@@ -1,50 +1,60 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Star, Quote } from 'lucide-react';
 import { reviews } from '../data/siteData';
 
 export function StarRating() {
   return (
     <span className="review-stars" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} size={16} fill="currentColor" stroke="currentColor" aria-hidden="true" />
+        <Star key={i} size={15} fill="#D4AF37" stroke="#D4AF37" aria-hidden="true" />
       ))}
     </span>
   );
 }
 
 export function ReviewCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const current = reviews[currentIndex];
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
-  };
+  const [isPaused, setIsPaused] = useState(false);
+  const doubledReviews = [...reviews, ...reviews];
 
   return (
-    <div className="reveal reviews-carousel" style={{ transitionDelay: '100ms' }}>
-      <div className="review-card" aria-live="polite" aria-atomic="true">
-        <span className="review-card__quote-mark">“</span>
-        <StarRating />
-        <p>{current.quote}</p>
-        <span className="review-card__attribution">
-          {current.name} · {current.service} · {current.when}
-        </span>
+    <div className="loved-by-locals-section" role="region" aria-label="Client testimonials">
+      {/* Infinite Smooth Scrolling Marquee (Unique Keratin inspired) */}
+      <div 
+        className={`loved-by-locals-marquee-wrapper ${isPaused ? 'is-paused' : ''}`}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="loved-by-locals-track">
+          {doubledReviews.map((rev, idx) => (
+            <article 
+              key={`${rev.name}-${idx}`} 
+              className="marquee-review-card"
+              tabIndex={0}
+            >
+              <div className="marquee-review-card__header">
+                <StarRating />
+                <span className="marquee-review-card__verified">
+                  <CheckCircle2 size={13} aria-hidden="true" /> Verified Client
+                </span>
+              </div>
+              <p className="marquee-review-card__quote">
+                “{rev.quote}”
+              </p>
+              <div className="marquee-review-card__footer">
+                <div className="marquee-review-card__author-info">
+                  <strong className="marquee-review-card__author">{rev.name}</strong>
+                  <span className="marquee-review-card__meta">{rev.service} · {rev.when}</span>
+                </div>
+                <span className="marquee-review-card__quote-badge" aria-hidden="true">
+                  <Quote size={20} />
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-
-      <div className="reviews-carousel__controls">
-        <button type="button" aria-label="Previous review" onClick={handlePrev}>
-          <ArrowLeft size={18} aria-hidden="true" />
-        </button>
-        <span>
-          {String(currentIndex + 1).padStart(2, '0')} <i>/</i> {String(reviews.length).padStart(2, '0')}
-        </span>
-        <button type="button" aria-label="Next review" onClick={handleNext}>
-          <ArrowRight size={18} aria-hidden="true" />
-        </button>
+      <div className="loved-by-locals-footnote">
+        <span>Hover or tap any review to pause</span>
       </div>
     </div>
   );
